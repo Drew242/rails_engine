@@ -22,4 +22,25 @@ class Api::V1::TransactionsControllerTest < ActionController::TestCase
     assert_equal "4232569591693416",  transaction[:credit_card_number]
     assert_equal "success",           transaction[:result]
   end
+
+  test "#find" do
+    get :find, format: :json, id: Transaction.first.id
+
+    transaction = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal 3,                  transaction[:invoice_id]
+    assert_equal "4232569591693416", transaction[:credit_card_number]
+    assert_equal "success",          transaction[:result]
+  end
+
+  test "#find_all" do
+    get :find_all, format: :json, item_id: Transaction.first.id
+
+    transaction = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal 3,         transaction.count
+    assert_equal 980190962, transaction.first[:id]
+  end
 end
