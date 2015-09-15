@@ -10,7 +10,7 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def create
-    respond_with Customer.create(customer_params)
+    respond_with Customer.create(customer_params), location: nil
   end
 
   def update
