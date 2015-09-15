@@ -1,0 +1,17 @@
+one:
+  item_id: 1
+  invoice_id: 1
+  quantity: 5
+  unit_price: 150.00
+
+two:
+  item_id: 2
+  invoice_id: 2
+  quantity: 7
+  unit_price: 250.00
+
+three:
+  item_id: 3
+  invoice_id: 3
+  quantity: 9
+  unit_price: 350.00

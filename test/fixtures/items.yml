@@ -1,0 +1,17 @@
+one:
+  name: "Something"
+  description: "This is something"
+  unit_price: 50.00
+  merchant_id: 1
+
+two:
+  name: "A thing"
+  description: "This is a thing"
+  unit_price: 40.00
+  merchant_id: 2
+
+three:
+  name: "Random object"
+  description: "This is a random object"
+  unit_price: 30.00
+  merchant_id: 3
