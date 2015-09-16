@@ -21,7 +21,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_equal "Random object",            item[:name]
     assert_equal "This is a random object",  item[:description]
     assert_equal "30.0",                     item[:unit_price]
-    assert_equal 3,                          item[:merchant_id]
+    assert_equal 113629430,                          item[:merchant_id]
   end
 
   test "#find" do
@@ -33,7 +33,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_equal "Random object", item[:name]
     assert_equal "This is a random object", item[:description]
     assert_equal "30.0", item[:unit_price]
-    assert_equal 3, item[:merchant_id]
+    assert_equal 113629430, item[:merchant_id]
   end
 
   test "#find_all" do
@@ -44,5 +44,23 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 3, item.count
     assert_equal 980190962, item.first[:id]
+  end
+
+  test "#invoice_items" do
+    get :invoice_items, format: :json, item_id: Item.first.id
+
+    invoice_items = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal 1, invoice_items.count
+  end
+
+  test "#merchant" do
+    get :merchant, format: :json, item_id: Item.first.id
+
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal "Nader-Hyatt", merchant[:name]
   end
 end

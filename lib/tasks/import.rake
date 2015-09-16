@@ -18,7 +18,15 @@ task :import => [:environment] do
   items  = File.read("db/csvs/items.csv")
   parsed = CSV.parse(items, headers: true)
   parsed.each do |row|
-    Item.create(row.to_h.except("id"))
+    Item.create({
+          name:        row["name"],
+          description: row["description"],
+          unit_price:  BigDecimal.new((row["unit_price"].to_f/100).to_s),
+          merchant_id: row["merchant_id"],
+          created_at:  row["created_at"],
+          updated_at:  row["updated_at"]
+    }
+    )
   end
 
   invoices = File.read("db/csvs/invoices.csv")
@@ -30,7 +38,14 @@ task :import => [:environment] do
   invoice_items = File.read("db/csvs/invoice_items.csv")
   parsed        = CSV.parse(invoice_items, headers: true)
   parsed.each do |row|
-    InvoiceItem.create(row.to_h.except("id"))
+    InvoiceItem.create({
+                item_id:    row["item_id"],
+                invoice_id: row["invoice_id"],
+                quantity:   row["quantity"],
+                unit_price: BigDecimal.new((row["unit_price"].to_f/100).to_s),
+                created_at: row["created_at"],
+                updated_at: row["updated_at"]
+      })
   end
 
   transactions  = File.read("db/csvs/transactions.csv")
