@@ -19,7 +19,15 @@ class Api::V1::CustomersController < ApplicationController
 
   def random
     random = rand(Customer.count)
-    respond_with Customer.find(id: random)
+    respond_with Customer.find(random)
+  end
+
+  def invoices
+    respond_with Customer.find_by(id: params[:customer_id]).invoices
+  end
+
+  def transactions
+    respond_with Customer.find_by(id: params[:customer_id]).transactions
   end
 
   private

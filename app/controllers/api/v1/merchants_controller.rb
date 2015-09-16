@@ -19,7 +19,7 @@ class Api::V1::MerchantsController < ApplicationController
 
   def random
     random = rand(Merchant.count)
-    respond_with Merchant.find(id: random)
+    respond_with Merchant.find(random)
   end
 
   private

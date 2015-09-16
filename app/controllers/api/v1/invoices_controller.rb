@@ -19,7 +19,27 @@ class Api::V1::InvoicesController < ApplicationController
 
   def random
     random = rand(Invoice.count)
-    respond_with Invoice.find(id: random)
+    respond_with Invoice.find(random)
+  end
+
+  def transactions
+    respond_with Invoice.find_by(id: params[:invoice_id]).transactions
+  end
+
+  def invoice_items
+    respond_with Invoice.find_by(id: params[:invoice_id]).invoice_items
+  end
+
+  def items
+    respond_with Invoice.find_by(id: params[:invoice_id]).items 
+  end
+
+  def customer
+    respond_with Invoice.find_by(id: params[:invoice_id]).customer
+  end
+
+  def merchant
+    respond_with Invoice.find_by(id: params[:invoice_id]).merchant
   end
 
   private
