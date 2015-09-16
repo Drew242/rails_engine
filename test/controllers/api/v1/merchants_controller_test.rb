@@ -40,4 +40,14 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_equal 3, merchant.count
     assert_equal 980190962, merchant.first[:id]
   end
+
+  test "#items" do
+    get :items, format: :json, merchant_id: Merchant.first.id
+
+    items = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal 1, items.count
+    assert_equal 113629430, items.first[:id]
+  end
 end

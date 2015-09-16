@@ -31,7 +31,7 @@ class Api::V1::InvoicesController < ApplicationController
   end
 
   def items
-    respond_with Invoice.find_by(id: params[:invoice_id]).items 
+    respond_with Invoice.find_by(id: params[:invoice_id]).items
   end
 
   def customer
@@ -45,6 +45,6 @@ class Api::V1::InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.permit(:id, :customer_id, :merchant_id, :status)
+    params.permit(:id, :customer_id, :merchant_id, :status, :created_at, :updated_at)
   end
 end
