@@ -18,9 +18,9 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
     invoice = JSON.parse(response.body, symbolize_names: true)
 
     assert_response :success
-    assert_equal 1,          invoice[:customer_id]
-    assert_equal 1,          invoice[:merchant_id]
-    assert_equal "shipped",  invoice[:status]
+    assert_equal 980190962, invoice[:customer_id]
+    assert_equal 113629430, invoice[:merchant_id]
+    assert_equal "shipped", invoice[:status]
   end
 
   test "#find" do
@@ -29,8 +29,8 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
     invoice = JSON.parse(response.body, symbolize_names: true)
 
     assert_response :success
-    assert_equal 1,         invoice[:customer_id]
-    assert_equal 1,         invoice[:merchant_id]
+    assert_equal 980190962, invoice[:customer_id]
+    assert_equal 113629430, invoice[:merchant_id]
     assert_equal "shipped", invoice[:status]
   end
 

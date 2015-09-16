@@ -41,4 +41,22 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     assert_equal 1,        customer.count
     assert_equal "Andrew", customer.first[:first_name]
   end
+
+  test "#invoices" do
+    get :invoices, format: :json, customer_id: Customer.first.id
+
+    invoices = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal 1, invoices.count
+  end
+
+  test "#transactions" do
+    get :transactions, format: :json, customer_id: Customer.first.id
+
+    transactions = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal 1, transactions.count
+  end
 end
