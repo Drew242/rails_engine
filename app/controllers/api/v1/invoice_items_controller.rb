@@ -19,7 +19,15 @@ class Api::V1::InvoiceItemsController < ApplicationController
 
   def random
     random = rand(InvoiceItem.count)
-    respond_with InvoiceItem.find(id: random)
+    respond_with InvoiceItem.find(random)
+  end
+
+  def invoice
+    respond_with InvoiceItem.find_by(id: params[:invoice_item_id]).invoice
+  end
+
+  def item
+    respond_with InvoiceItem.find_by(id: params[:invoice_item_id]).item
   end
 
   private
